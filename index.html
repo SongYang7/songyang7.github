@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Songyang's Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 转场动画容器 -->
+<div class="transition-overlay" id="transitionOverlay">
+  <div class="Songyang-logo">
+    <!-- 图标用 Font Awesome（需引入图标库，若不想引入可替换为图片） -->
+    <i class="fa fa-paw logo-icon"></i> <!-- 代码图标，可替换为熊图标：fa-solid fa-paw -->
+    <span class="logo-text">Songyang</span>
+    <span class="logo-text">NUAA</span>
+  </div>
+  
+  <!-- 进度条组件 -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">0%</div>
+  </div>
+  
+  <!-- 加载提示 -->
+  <div class="loading-text">
+    正在前往目的地<span>.</span><span>.</span><span>.</span>
+  </div>
+</div>
+
+<!-- 引入 Font Awesome 图标库（用于 logo 图标，若用图片可省略） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <!-- 1. 导航栏 -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">Songyang</div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">首页</a></li>
+        <li><a href="#about" class="nav-link">关于我</a></li>
+        <li><a href="#skills" class="nav-link">技能</a></li>
+        <li><a href="#projects" class="nav-link">项目</a></li>
+        <li><a href="#contact" class="nav-link">联系我</a></li> 
+        <li><a href="#messages" class="nav-link">留言板</a></li>
+        <li><a href="games.html" class="nav-link">游戏</a></li>
+        <li><a href="#tools" class="nav-link">工具库</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. 首页横幅 -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="typing-text">你好,我是<span class="highlight">Songyang</span></h1>
+        <p class="subtitle">前后端开发者 / 网络安全爱好者 / 海大大三在读 / 转大模型ing</p>
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary">了解更多</a>
+          <a href="#contact" class="btn btn-secondary">联系我</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="image-wrapper">
+          <img src="TX.jpg" alt="我的照片" width="30rpx" height="30rpx" />
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>向下滚动</span>
+      <div class="mouse"></div>
+    </div>
+  </section>
+
+  <!-- 3. 关于我 -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">关于我</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="TX.jpg" alt="我的照片" />
+        </div>
+        <div class="about-text">
+          <h3>一个热爱编程的探索者</h3>
+          <p>我是一名正在学习前后端开发的大学生，对编程充满热情。除了编程，我还喜欢骑自行车，保持健康的生活方式。目前正在探索大模型领域，希望能在这个快速发展的技术领域有所建树。</p>
+          <div class="about-info">
+            <div class="info-item">
+              <span class="info-label">学校</span>
+              <span class="info-value">海南的大学</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">专业</span>
+              <span class="info-value">软件工程</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">年级</span>
+              <span class="info-value">大三</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 技能展示 -->
+  <section id="skills" class="section section-dark">
+    <div class="container">
+      <h2 class="section-title">我的技能</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">💻</div>
+          <h3>后端开发</h3>
+          <div class="skill-tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🌐</div>
+          <h3>前端开发</h3>
+          <div class="skill-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <h3>AI/ML</h3>
+          <div class="skill-tags">
+            <span class="tag">大模型</span>
+            <span class="tag">机器学习</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🛠️</div>
+          <h3>工具</h3>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">Maven</span>
+            <span class="tag">IDEA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- 5. 项目展示 -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">我的项目</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-placeholder">项目1</div>
+          </div>
+          <div class="project-content">
+            <h3>个人博客系统</h3>
+            <p>基于Hexo在github部署的个人博客系统，支持文章发布、评论等功能。</p>
+            <div class="project-tags">
+              <span class="tag">Hexo</span>
+              <span class="tag">Github</span>
+              <span class="tag">waline</span>
+            </div>
+            <a href="https://songyang7.github.io/" class="project-link" target="_blank" rel="noopener noreferrer">查看详情 →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-placeholder">项目2</div>
+          </div>
+          <div class="project-content">
+            <h3>在线留言板</h3>
+            <p>前后端分离的留言板系统，支持用户留言、查看历史记录等功能。</p>
+            <div class="project-tags">
+              <span class="tag">Java</span>
+              <span class="tag">HTML/CSS/JS</span>
+            </div>
+            <a href="#" class="project-link">查看详情 →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-placeholder">项目3</div>
+          </div>
+          <div class="project-content">
+            <h3>更多项目</h3>
+            <p>持续更新中，敬请期待...</p>
+            <div class="project-tags">
+              <span class="tag">Coming Soon</span>
+            </div>
+            <a href="#" class="project-link">查看详情 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 工具库 -->
+  <section id="tools" class="section section-dark">
+    <div class="container">
+      <h2 class="section-title">科技工具库</h2>
+      <p class="section-description">
+        <span class="text-glow">//</span> 探索我的数字化工具箱，为效率赋能，为创意加速 <span class="text-glow">//</span>
+      </p>
+      <div class="tools-grid">
+        <!-- 图片压缩工具 -->
+        <div class="tool-card">
+          <!-- 科技感图标 -->
+          <div class="tool-icon">🖼️</div>
+          
+          <!-- 工具名称 -->
+          <h3>智能图片压缩引擎</h3>
+          
+          <!-- 工具描述 -->
+          <p>采用先进的有损压缩算法，在保持视觉质量的同时显著减小图片体积。支持批量处理、自定义压缩比例，为您的网站和应用提供最优加载体验。</p>
+          
+          <!-- 技术标签 -->
+          <div class="tool-tags">
+            <span class="tag">Canvas API</span>
+            <span class="tag">WebP转换</span>
+            <span class="tag">批量处理</span>
+            <span class="tag">零依赖</span>
+          </div>
+          
+          <!-- 行动按钮 -->
+          <a href="index-black.html" class="btn btn-primary" target="_blank">立即使用</a>
+        </div>
+        
+        <!-- 开发中工具 -->
+        <div class="tool-card">
+          <!-- 科技感图标 -->
+          <div class="tool-icon">🔮</div>
+          
+          <!-- 工具名称 -->
+          <h3>AI文本增强器</h3>
+          
+          <!-- 工具描述 -->
+          <p>融合大语言模型的文本智能处理工具，支持语法检查、风格转换、内容扩展等功能。为您的写作提供AI辅助，提升创作效率。</p>
+          
+          <!-- 技术标签 -->
+          <div class="tool-tags">
+            <span class="tag">AI驱动</span>
+            <span class="tag">文本处理</span>
+            <span class="tag">语法优化</span>
+            <span class="tag">Coming Soon</span>
+          </div>
+        </div>
+        
+        <!-- 开发中工具 -->
+        <div class="tool-card">
+          <!-- 科技感图标 -->
+          <div class="tool-icon">📊</div>
+          
+          <!-- 工具名称 -->
+          <h3>数据可视化工具</h3>
+          
+          <!-- 工具描述 -->
+          <p>简单易用的数据可视化工具，支持多种图表类型，帮助您快速将原始数据转化为直观易懂的可视化图表，发现数据背后的故事。</p>
+          
+          <!-- 技术标签 -->
+          <div class="tool-tags">
+            <span class="tag">Chart.js</span>
+            <span class="tag">数据处理</span>
+            <span class="tag">响应式设计</span>
+            <span class="tag">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 科技感分隔线 -->
+      <div class="tech-divider">
+        <div class="tech-dot"></div>
+        <div class="tech-dot"></div>
+        <div class="tech-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 联系方式 -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <h2 class="section-title">联系我</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>我们一起交流</h3>
+          <p>如果你对我的项目感兴趣，或者想要合作，欢迎联系我！</p>
+          <div class="social-links">
+            <a href="mailto:long-0506@qq.com" class="social-link" title="邮箱">
+              <span>📧</span> 18889151392@163.com
+            </a>
+            <a href="#" class="social-link" title="GitHub">
+              <span>🐙</span> GitHub: songyang7
+            </a>
+            <a href="#" class="social-link" title="微信">
+              <span>💬</span> 微信: xk13875777442
+            </a>
+            <a href="https://blog.csdn.net/Songyang" target="_blank" class="social-link" title="CSDN">
+              <svg class="social-icon csdn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" opacity="0.1"/>
+                <path d="M8 8H16V10H8V8ZM8 12H16V14H8V12ZM8 16H13V18H8V16Z" fill="currentColor"/>
+                <path d="M6 4H18C19.1 4 20 4.9 20 6V18C20 19.1 19.1 20 18 20H6C4.9 20 4 19.1 4 18V6C4 4.9 4.9 4 6 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>CSDN: SongYang8 </span>
+            </a>
+          </div>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="你的姓名" required />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="你的邮箱" required />
+          </div>
+          <div class="form-group">
+            <textarea name="message" rows="5" placeholder="留言内容" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">发送消息</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 留言板 -->
+  <section id="messages" class="section">
+    <div class="container">
+      <h2 class="section-title">📝 留言板</h2>
+      <div class="message-board">
+        <div class="message-form-wrapper">
+          <form id="githubMessageForm" class="message-form">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="请输入你的姓名" required />
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="请输入你的邮箱" required />
+            </div>
+            <div class="form-group">
+              <textarea name="content" rows="4" placeholder="请输入留言内容" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">提交留言</button>
+          </form>
+        </div>
+        <div class="message-list-wrapper">
+          <h3>历史留言（共 <span id="githubMessageCount">0</span> 条）</h3>
+          <div id="githubMessageList" class="message-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 日文字符矩阵背景 -->
+<!-- From Uiverse.io by solowzrd --> 
+<!-- From Uiverse.io by solowzrd --> 
+<div class="jp-matrix">
+  <span>ア</span><span>イ</span><span>ウ</span><span>エ</span><span>オ</span
+  ><span>カ</span><span>キ</span><span>ク</span><span>ケ</span><span>コ</span
+  ><span>サ</span><span>シ</span><span>ス</span><span>セ</span><span>ソ</span
+  ><span>タ</span><span>チ</span><span>ツ</span><span>テ</span><span>ト</span
+  ><span>ナ</span><span>ニ</span><span>ヌ</span><span>ネ</span><span>ノ</span
+  ><span>ハ</span><span>ヒ</span><span>フ</span><span>ヘ</span><span>ホ</span
+  ><span>マ</span><span>ミ</span><span>ム</span><span>メ</span><span>モ</span
+  ><span>ヤ</span><span>ユ</span><span>ヨ</span><span>ラ</span><span>リ</span
+  ><span>ル</span><span>レ</span><span>ロ</span><span>ワ</span><span>ヲ</span
+  ><span>ン</span><span>ガ</span><span>ギ</span><span>グ</span><span>ゲ</span
+  ><span>ゴ</span><span>ザ</span><span>ジ</span><span>ズ</span><span>ゼ</span
+  ><span>ゾ</span><span>ダ</span><span>ヂ</span><span>ヅ</span><span>デ</span
+  ><span>ド</span><span>バ</span><span>ビ</span><span>ブ</span><span>ベ</span
+  ><span>ボ</span><span>パ</span><span>ピ</span><span>プ</span><span>ペ</span
+  ><span>ポ</span><span>ア</span><span>イ</span><span>ウ</span><span>エ</span
+  ><span>オ</span><span>カ</span><span>キ</span><span>ク</span><span>ケ</span
+  ><span>コ</span><span>サ</span><span>シ</span><span>ス</span><span>セ</span
+  ><span>ソ</span><span>タ</span><span>チ</span><span>ツ</span><span>テ</span
+  ><span>ト</span><span>ナ</span><span>ニ</span><span>ヌ</span><span>ネ</span
+  ><span>ノ</span><span>ハ</span><span>ヒ</span><span>フ</span><span>ヘ</span
+  ><span>ホ</span> <span>ア</span><span>イ</span><span>ウ</span><span>エ</span
+  ><span>オ</span><span>カ</span><span>キ</span><span>ク</span><span>ケ</span
+  ><span>コ</span><span>サ</span><span>シ</span><span>ス</span><span>セ</span
+  ><span>ソ</span><span>タ</span><span>チ</span><span>ツ</span><span>テ</span
+  ><span>ト</span><span>ナ</span><span>ニ</span><span>ヌ</span><span>ネ</span
+  ><span>ノ</span><span>ハ</span><span>ヒ</span><span>フ</span><span>ヘ</span
+  ><span>ホ</span><span>マ</span><span>ミ</span><span>ム</span><span>メ</span
+  ><span>モ</span><span>ヤ</span><span>ユ</span><span>ヨ</span><span>ラ</span
+  ><span>リ</span><span>ル</span><span>レ</span><span>ロ</span><span>ワ</span
+  ><span>ヲ</span><span>ン</span><span>ガ</span><span>ギ</span><span>グ</span
+  ><span>ゲ</span><span>ゴ</span><span>ザ</span><span>ジ</span><span>ズ</span
+  ><span>ゼ</span><span>ゾ</span><span>ダ</span><span>ヂ</span><span>ヅ</span
+  ><span>デ</span><span>ド</span><span>バ</span><span>ビ</span><span>ブ</span
+  ><span>ベ</span><span>ボ</span><span>パ</span><span>ピ</span><span>プ</span
+  ><span>ペ</span><span>ポ</span><span>ア</span><span>イ</span><span>ウ</span
+  ><span>エ</span><span>オ</span><span>カ</span><span>キ</span><span>ク</span
+  ><span>ケ</span><span>コ</span><span>サ</span><span>シ</span><span>ス</span
+  ><span>セ</span><span>ソ</span><span>タ</span><span>チ</span><span>ツ</span
+  ><span>テ</span><span>ト</span><span>ナ</span><span>ニ</span><span>ヌ</span
+  ><span>ネ</span><span>ノ</span><span>ハ</span><span>ヒ</span><span>フ</span
+  ><span>ヘ</span><span>ホ</span> <span>ア</span><span>イ</span><span>ウ</span
+  ><span>エ</span><span>オ</span><span>カ</span><span>キ</span><span>ク</span
+  ><span>ケ</span><span>コ</span><span>サ</span><span>シ</span><span>ス</span
+  ><span>セ</span><span>ソ</span><span>タ</span><span>チ</span><span>ツ</span
+  ><span>テ</span><span>ト</span><span>ナ</span><span>ニ</span><span>ヌ</span
+  ><span>ネ</span><span>ノ</span><span>ハ</span><span>ヒ</span><span>フ</span
+  ><span>ヘ</span><span>ホ</span><span>マ</span><span>ミ</span><span>ム</span
+  ><span>メ</span><span>モ</span><span>ヤ</span><span>ユ</span><span>ヨ</span
+  ><span>ラ</span><span>リ</span><span>ル</span><span>レ</span><span>ロ</span
+  ><span>ワ</span><span>ヲ</span><span>ン</span><span>ガ</span><span>ギ</span
+  ><span>グ</span><span>ゲ</span><span>ゴ</span><span>ザ</span><span>ジ</span
+  ><span>ズ</span><span>ゼ</span><span>ゾ</span><span>ダ</span><span>ヂ</span
+  ><span>ヅ</span><span>デ</span><span>ド</span><span>バ</span><span>ビ</span
+  ><span>ブ</span><span>ベ</span><span>ボ</span><span>パ</span><span>ピ</span
+  ><span>プ</span><span>ペ</span><span>ポ</span><span>ア</span><span>イ</span
+  ><span>ウ</span><span>エ</span><span>オ</span><span>カ</span><span>キ</span
+  ><span>ク</span><span>ケ</span><span>コ</span><span>サ</span><span>シ</span
+  ><span>ス</span><span>セ</span><span>ソ</span><span>タ</span><span>チ</span
+  ><span>ツ</span><span>テ</span><span>ト</span><span>ナ</span><span>ニ</span
+  ><span>ヌ</span><span>ネ</span><span>ノ</span><span>ハ</span><span>ヒ</span
+  ><span>フ</span><span>ヘ</span><span>ホ</span> <span>ア</span><span>イ</span
+  ><span>ウ</span><span>エ</span><span>オ</span><span>カ</span><span>キ</span
+  ><span>ク</span><span>ケ</span><span>コ</span><span>サ</span><span>シ</span
+  ><span>ス</span><span>セ</span><span>ソ</span><span>タ</span><span>チ</span
+  ><span>ツ</span><span>テ</span><span>ト</span><span>ナ</span><span>ニ</span
+  ><span>ヌ</span><span>ネ</span><span>ノ</span><span>ハ</span><span>ヒ</span
+  ><span>フ</span><span>ヘ</span><span>ホ</span><span>マ</span><span>ミ</span
+  ><span>ム</span><span>メ</span><span>モ</span><span>ヤ</span><span>ユ</span
+  ><span>ヨ</span><span>ラ</span><span>リ</span><span>ル</span><span>レ</span
+  ><span>ロ</span><span>ワ</span><span>ヲ</span><span>ン</span><span>ガ</span
+  ><span>ギ</span><span>グ</span><span>ゲ</span><span>ゴ</span><span>ザ</span
+  ><span>ジ</span><span>ズ</span><span>ゼ</span><span>ゾ</span><span>ダ</span
+  ><span>ヂ</span><span>ヅ</span><span>デ</span><span>ド</span><span>バ</span
+  ><span>ビ</span><span>ブ</span><span>ベ</span><span>ボ</span><span>パ</span
+  ><span>ピ</span><span>プ</span><span>ペ</span><span>ポ</span><span>ア</span
+  ><span>イ</span><span>ウ</span><span>エ</span><span>オ</span><span>カ</span
+  ><span>キ</span><span>ク</span><span>ケ</span><span>コ</span><span>サ</span
+  ><span>シ</span><span>ス</span><span>セ</span><span>ソ</span><span>タ</span
+  ><span>チ</span><span>ツ</span><span>テ</span><span>ト</span><span>ナ</span
+  ><span>ニ</span><span>ヌ</span><span>ネ</span><span>ノ</span><span>ハ</span
+  ><span>ヒ</span><span>フ</span><span>ヘ</span><span>ホ</span> <span>ア</span
+  ><span>イ</span><span>ウ</span><span>エ</span><span>オ</span><span>カ</span
+  ><span>キ</span><span>ク</span><span>ケ</span><span>コ</span><span>サ</span
+  ><span>シ</span><span>ス</span><span>セ</span><span>ソ</span><span>タ</span
+  ><span>チ</span><span>ツ</span><span>テ</span><span>ト</span><span>ナ</span
+  ><span>ニ</span><span>ヌ</span><span>ネ</span><span>ノ</span><span>ハ</span
+  ><span>ヒ</span><span>フ</span><span>ヘ</span><span>ホ</span><span>マ</span
+  ><span>ミ</span><span>ム</span><span>メ</span><span>モ</span><span>ヤ</span
+  ><span>ユ</span><span>ヨ</span><span>ラ</span><span>リ</span><span>ル</span
+  ><span>レ</span><span>ロ</span><span>ワ</span><span>ヲ</span><span>ン</span
+  ><span>ガ</span><span>ギ</span><span>グ</span><span>ゲ</span><span>ゴ</span
+  ><span>ザ</span><span>ジ</span><span>ズ</span><span>ゼ</span><span>ゾ</span
+  ><span>ダ</span><span>ヂ</span><span>ヅ</span><span>デ</span><span>ド</span
+  ><span>バ</span><span>ビ</span><span>ブ</span><span>ベ</span><span>ボ</span
+  ><span>パ</span><span>ピ</span><span>プ</span><span>ペ</span><span>ポ</span
+  ><span>ア</span><span>イ</span><span>ウ</span><span>エ</span><span>オ</span
+  ><span>カ</span><span>キ</span><span>ク</span><span>ケ</span><span>コ</span
+  ><span>サ</span><span>シ</span><span>ス</span><span>セ</span><span>ソ</span
+  ><span>タ</span><span>チ</span><span>ツ</span><span>テ</span><span>ト</span
+  ><span>ナ</span><span>ニ</span><span>ヌ</span><span>ネ</span><span>ノ</span
+  ><span>ハ</span><span>ヒ</span><span>フ</span><span>ヘ</span><span>ホ</span>
+  <span>ア</span><span>イ</span><span>ウ</span><span>エ</span><span>オ</span
+  ><span>カ</span><span>キ</span><span>ク</span><span>ケ</span><span>コ</span
+  ><span>サ</span><span>シ</span><span>ス</span><span>セ</span><span>ソ</span
+  ><span>タ</span><span>チ</span><span>ツ</span><span>テ</span><span>ト</span
+  ><span>ナ</span><span>ニ</span><span>ヌ</span><span>ネ</span><span>ノ</span
+  ><span>ハ</span><span>ヒ</span><span>フ</span><span>ヘ</span><span>ホ</span
+  ><span>マ</span><span>ミ</span><span>ム</span><span>メ</span><span>モ</span
+  ><span>ヤ</span><span>ユ</span><span>ヨ</span><span>ラ</span><span>リ</span
+  ><span>ル</span><span>レ</span><span>ロ</span><span>ワ</span><span>ヲ</span
+  ><span>ン</span><span>ガ</span><span>ギ</span><span>グ</span><span>ゲ</span
+  ><span>ゴ</span><span>ザ</span><span>ジ</span><span>ズ</span><span>ゼ</span
+  ><span>ゾ</span><span>ダ</span><span>ヂ</span><span>ヅ</span><span>デ</span
+  ><span>ド</span><span>バ</span><span>ビ</span><span>ブ</span><span>ベ</span
+  ><span>ボ</span><span>パ</span><span>ピ</span><span>プ</span><span>ペ</span
+  ><span>ポ</span><span>ア</span><span>イ</span><span>ウ</span><span>エ</span
+  ><span>オ</span><span>カ</span><span>キ</span><span>ク</span><span>ケ</span
+  ><span>コ</span><span>サ</span><span>シ</span><span>ス</span><span>セ</span
+  ><span>ソ</span><span>タ</span><span>チ</span><span>ツ</span><span>テ</span
+  ><span>ト</span><span>ナ</span><span>ニ</span><span>ヌ</span><span>ネ</span
+  ><span>ノ</span><span>ハ</span><span>ヒ</span><span>フ</span><span>ヘ</span
+  ><span>ホ</span>
+</div>
+
+
+  <!-- 9. 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Songyang. All rights reserved.</p>
+      <p>Made with ❤️ by Songyang</p>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="backToTop" class="back-to-top" aria-label="返回顶部">
+    ↑
+  </button>
+  <!-- 转场动画 + 跳转逻辑（无需修改） -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const transitionOverlay = document.getElementById('transitionOverlay');
+      const projectLinks = document.querySelectorAll('.project-link');
+      const gameLink = document.querySelector('.nav-link[href="games.html"]');
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+
+      // 合并所有需要转场的链接
+      const transitionLinks = [...projectLinks];
+      if (gameLink) {
+        transitionLinks.push(gameLink);
+      }
+
+      if (transitionOverlay && transitionLinks.length > 0) {
+        console.log('转场动画已初始化');
+        
+        transitionLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            console.log('点击了链接，目标URL:', targetUrl);
+            
+            // 显示转场动画
+            transitionOverlay.classList.add('active');
+            console.log('已添加active类');
+            
+            // 重置进度条
+            progressFill.style.width = '0%';
+            progressText.textContent = '0%';
+            
+            // 启动进度条动画（2秒）
+            const startTime = Date.now();
+            const duration = 2000; // 2秒加载时间
+            
+            function updateProgress() {
+              const elapsed = Date.now() - startTime;
+              const progress = Math.min((elapsed / duration) * 100, 100);
+              
+              // 更自然的进度曲线
+              const easeProgress = 1 - Math.pow(1 - progress / 100, 2);
+              const finalProgress = Math.round(easeProgress * 100);
+              
+              progressFill.style.width = finalProgress + '%';
+              progressText.textContent = finalProgress + '%';
+              
+              if (elapsed < duration) {
+                requestAnimationFrame(updateProgress);
+              }
+            }
+            
+            requestAnimationFrame(updateProgress);
+            
+            // 2秒后跳转
+            setTimeout(() => {
+              console.log('准备跳转');
+              // 游戏链接在当前窗口打开，项目链接在新窗口打开
+              if (targetUrl === 'games.html') {
+                window.location.href = targetUrl;
+              } else {
+                window.open(targetUrl, '_blank');
+              }
+              // 跳转后隐藏动画（可选）
+              setTimeout(() => {
+                transitionOverlay.classList.remove('active');
+              }, 500);
+            }, duration);
+          });
+        });
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeBear的游戏世界</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <style>
+    /* 转场动画样式已在style.css中定义，此处添加返回按钮样式 */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* 游戏页面加载动画 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .game-card {
+      animation: fadeIn 0.8s ease-out;
+    }
+  </style>
+  <style>
+    /* 游戏页面特定样式 */
+    .games-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .games-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    }
+
+    .games-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .games-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .games-title h1 {
+      font-size: 3rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .games-title p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .game-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease;
+    }
+
+    .game-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .game-card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .game-image {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .game-image i {
+      font-size: 5rem;
+      color: var(--white);
+      opacity: 0.9;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .game-content {
+      padding: 2rem;
+    }
+
+    .game-content h3 {
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .game-content p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .game-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fbbf24;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .game-button {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.6s ease;
+    }
+
+    .game-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    .game-button:hover::before {
+      left: 100%;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-5px);
+    }
+
+    /* 粒子背景效果 */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .games-title h1 {
+        font-size: 2.5rem;
+      }
+
+      .game-card {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 转场动画容器 -->
+  <div class="transition-overlay" id="transitionOverlay">
+    <div class="codebear-logo">
+      <i class="fa fa-paw logo-icon"></i>
+      <span class="logo-text">CodeBear</span>
+      <span class="logo-text">NUAA</span>
+    </div>
+    
+    <!-- 进度条组件 -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+    
+    <!-- 加载提示 -->
+    <div class="loading-text">
+      正在前往目的地<span>.</span><span>.</span><span>.</span>
+    </div>
+  </div>
+  <!-- 返回按钮 -->
+  <a href="index.html" class="back-button" aria-label="返回首页">
+    <i class="fa fa-arrow-left"></i>
+  </a>
+
+  <!-- 游戏页面英雄区 -->
+  <a href="index.html" class="back-button" id="backButton">
+    <i class="fa fa-arrow-left"></i>
+    返回首页
+  </a>
+  
+  <section class="games-hero">
+    <div class="particles"></div>
+    <div class="games-container">
+      <div class="games-title">
+        <h1><i class="fa fa-gamepad"></i> CodeBear的游戏世界</h1>
+        <p>欢迎来到我的游戏专区！这里有精心制作的经典游戏，希望你能享受愉快的游戏时光！</p>
+      </div>
+
+      <div class="games-grid">
+        <!-- 坦克大战 -->
+        <div class="game-card">
+          <div class="game-image">
+            <i class="fa fa-trophy"></i>
+          </div>
+          <div class="game-content">
+            <h3><i class="fa fa-tank"></i> 坦克大战</h3>
+            <p>经典的坦克对战游戏，驾驶你的坦克消灭所有敌人，保护基地不被摧毁！支持多种游戏模式和难度选择。</p>
+            <div class="game-stats">
+              <div class="stat-item">
+                <span class="stat-value">⭐⭐⭐⭐⭐</span>
+                <span class="stat-label">评分</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">100+</span>
+                <span class="stat-label">关卡</span>
+              </div>
+            </div>
+            <a href="tank-game.html" class="game-button">开始游戏</a>
+          </div>
+        </div>
+
+        <!-- 贪吃爆炸蛇 -->
+        <div class="game-card">
+          <div class="game-image">
+            <i class="fa fa-bomb"></i>
+          </div>
+          <div class="game-content">
+            <h3><i class="fa fa-snake"></i> 贪吃爆炸蛇</h3>
+            <p>创新版贪吃蛇游戏，吃到食物会爆炸并分裂！挑战你的反应速度和策略思维，看你能得多少分！</p>
+            <div class="game-stats">
+              <div class="stat-item">
+                <span class="stat-value">⭐⭐⭐⭐</span>
+                <span class="stat-label">评分</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">∞</span>
+                <span class="stat-label">游戏时长</span>
+              </div>
+            </div>
+            <a href="#" class="game-button" onclick="alert('该游戏页面尚未添加'); return false;">敬请期待</a>
+          </div>
+        </div>
+
+        <!-- 球球大作战 -->
+        <div class="game-card">
+          <div class="game-image">
+            <i class="fa fa-circle-o"></i>
+          </div>
+          <div class="game-content">
+            <h3><i class="fa fa-circle"></i> 球球大作战</h3>
+            <p>控制你的小球吞噬其他球体，不断变大！小心避开比你大的球，成为游戏中的最大球体！</p>
+            <div class="game-stats">
+              <div class="stat-item">
+                <span class="stat-value">⭐⭐⭐⭐⭐</span>
+                <span class="stat-label">评分</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">实时</span>
+                <span class="stat-label">排行榜</span>
+              </div>
+            </div>
+            <a href="#" class="game-button" onclick="alert('该游戏页面尚未添加'); return false;">敬请期待</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 转场动画脚本 -->
+  <script>
+    // 页面加载完成后隐藏转场动画
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        const transitionOverlay = document.getElementById('transitionOverlay');
+        if (transitionOverlay) {
+          transitionOverlay.classList.remove('active');
+        }
+      }, 500);
+    });
+    
+    // 返回按钮转场动画
+    document.addEventListener('DOMContentLoaded', function() {
+      const transitionOverlay = document.getElementById('transitionOverlay');
+      const backButton = document.getElementById('backButton');
+      const gameLinks = document.querySelectorAll('.game-button');
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+
+      // 合并所有需要转场的链接
+      const transitionLinks = [];
+      if (backButton) transitionLinks.push(backButton);
+      gameLinks.forEach(link => transitionLinks.push(link));
+
+      if (transitionOverlay && transitionLinks.length > 0) {
+        transitionLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            
+            // 显示转场动画
+            transitionOverlay.classList.add('active');
+            
+            // 重置进度条
+            progressFill.style.width = '0%';
+            progressText.textContent = '0%';
+            
+            // 启动进度条动画（2秒）
+            const startTime = Date.now();
+            const duration = 2000; // 2秒加载时间
+            
+            function updateProgress() {
+              const elapsed = Date.now() - startTime;
+              const progress = Math.min((elapsed / duration) * 100, 100);
+              
+              // 更自然的进度曲线
+              const easeProgress = 1 - Math.pow(1 - progress / 100, 2);
+              const finalProgress = Math.round(easeProgress * 100);
+              
+              progressFill.style.width = finalProgress + '%';
+              progressText.textContent = finalProgress + '%';
+              
+              if (elapsed < duration) {
+                requestAnimationFrame(updateProgress);
+              }
+            }
+            
+            requestAnimationFrame(updateProgress);
+            
+            // 2秒后跳转
+            setTimeout(() => {
+              window.location.href = targetUrl;
+            }, duration);
+          });
+        });
+      }
+    });
+  </script>
+
+  <script>
+    // 粒子背景效果
+    document.addEventListener('DOMContentLoaded', function() {
+      const particlesContainer = document.querySelector('.particles');
+      const particleCount = 50;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        
+        // 随机大小和位置
+        const size = Math.random() * 5 + 1;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+
+        // 设置样式
+        particle.style.position = 'absolute';
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.backgroundColor = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+        particle.style.borderRadius = '50%';
+        particle.style.left = `${x}%`;
+        particle.style.top = `${y}%`;
+        particle.style.boxShadow = `0 0 ${size * 2}px rgba(255, 255, 255, 0.3)`;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        particle.style.zIndex = 0;
+
+        particlesContainer.appendChild(particle);
+      }
+
+      // 添加浮动动画
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) translateX(0);
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px);
+          }
+          50% {
+            transform: translateY(-10px) translateX(20px);
+          }
+          75% {
+            transform: translateY(-15px) translateX(5px);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

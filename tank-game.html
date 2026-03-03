@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>坦克大战</title>
+  <link rel="stylesheet" href="tank_style.css" />
+  <style>
+    /* 返回按钮样式 */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+      font-family: Arial, sans-serif;
+    }
+    
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- 返回按钮 -->
+  <a href="games.html" class="back-button" aria-label="返回游戏列表">
+    ← 返回游戏列表
+  </a>
+  
+  <div class="root">
+    <div class="game-container">
+      <div class="stage-wrap">
+        <canvas id="stage" width="800" height="600" aria-label="游戏画布"></canvas>
+        <div class="hud">
+          <div id="ui-left">分数: <span id="score">0</span></div>
+          <div id="ui-right">生命: <span id="lives">3</span></div>
+        </div>
+        <div class="panel" id="panel">
+          <div id="panel-title">按 Enter 或 点击“开始游戏”</div>
+          <div class="hint">方向键/WASD 移动，空格射击（后续开放）</div>
+        </div>
+      </div>
+
+      <div class="toolbar" aria-label="控制栏">
+        <button id="btn-start" class="btn primary" type="button">开始游戏</button>
+        <button id="btn-restart" class="btn" type="button">重置/重启</button>
+        <div class="spacer"></div>
+        <button id="btn-music" class="btn" type="button" aria-pressed="false">音乐：关</button>
+        <div class="legend">帧率稳定：固定 60Hz 物理步长</div>
+      </div>
+
+      <section class="instructions" aria-label="游戏说明">
+        <h2 class="ins-title">游戏说明</h2>
+        <ul class="ins-list">
+          <li>目标：击毁敌军、保护基地，获得更高分数。</li>
+          <li>操作：WASD/方向键移动；空格开火（稍后实现）。</li>
+          <li>规则：砖块可破坏，钢墙不可破坏（稍后实现）。</li>
+          <li>开始：按 Enter 或点击“开始游戏”。重启：点击“重置/重启”。</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="tank.js"></script>
+</body>
+</html>
+
+
